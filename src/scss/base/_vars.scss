@@ -1,20 +1,12 @@
-/**
- * Variables
-*/
+$yellow: #F3C652;
+$blu: #B4E6ED;
+$green: #84C08A;
+$dblue: #5DAAB5;
+$dgreen: #78B67F;
+$white: #F7F7F7;
 
-/* Typography */
-/* Breakpoints */
-/* Paths */
-/* Grid setup */
-/* Colour palette */
-$black: #000;
-$white: #fff;
-$light-gray: #f1f1f1;
+$greenText: #09460E;
 
-$body-background-color: #333;
-$foreground-color: #fff;
-$caption-color: #464646;
-$accent-color: #999;
-$link-color: #ec1f4e;
-
-/* Components */
+@mixin shadow{
+  -webkit-box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
+}

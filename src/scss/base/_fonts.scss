@@ -1,0 +1,28 @@
+@mixin serif_r {
+  font-family: 'IBM Plex Serif', serif;
+  font-weight: 400;
+}
+@mixin serif_m {
+  font-family: 'IBM Plex Serif', serif;
+  font-weight: 500;
+}
+@mixin serif_b {
+  font-family: 'IBM Plex Serif', serif;
+  font-weight: 600;
+}
+
+@mixin mono_r {
+  font-family: 'IBM Plex Mono', serif;
+  font-weight: 400;
+  letter-spacing: 1px;
+}
+@mixin mono_m {
+  font-family: 'IBM Plex Mono', serif;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+$body: 20px;
+$heading: 30px;
+$title: 80px;
+$small: 16px;
