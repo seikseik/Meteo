@@ -1,0 +1,21 @@
+.note_metodologiche{
+  padding: 30px;
+  @include mono_r;
+  font-size: 14px;
+  line-height: 1.3;
+  width:60%;
+  h3{
+    margin-bottom: 15px;
+    @include mono_m;
+  }
+}
+
+footer{
+  padding: 30px;
+  .footer_container{
+    padding: 20px;
+    background: $dgreen;
+    color:$white;
+    border-radius: 10px;
+  }
+}

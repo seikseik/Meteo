@@ -47,8 +47,8 @@ export let config = {
             description: 'Dopo Imperia e Savona, rispettivamente con indici 723 e 719, medaglia di bronzo per la toscana Massa (717) e quarto posto a pari merito per Catanzaro e Ancona, entrambe a quota 700. Poi c’è il fondo della classifica, cioè i posti dove nello scorso anno il clima è stato meno piacevole: degli ultimi 15 posti, undici sono occupati da città situate nella Pianura Padana. Maglia nera a Cremona, che ha sommato solo 366 punti nell’indice di vivibilità climatica, penultimo posto per Salerno (387), preceduta da Parma (393), Reggio Emilia e Oristano (entrambe con 395). ',
             header_title: '2.Quale è la città in Italia dove si vive meglio dal punto di vista climatico?',
             location: {
-              center: [10.989990, 42.616398],
-              zoom: 5.6,
+              center: [12.979990, 40.416398],
+              zoom: 7.6,
               pitch: 0,
               bearing: 0
                 // flyTo additional controls-
@@ -73,7 +73,7 @@ export let config = {
             description: '«Per compilare la classifica complessiva abbiamo assegnato un “peso” diverso ai vari fattori», illustra Lorenzo Tedici, meteorologo di IlMeteo.it «Abbiamo quindi dato valore doppio ai tre parametri biometeorologici più comuni, che sono temperatura media,  umidità e vento. Agli altri, come piovosità,  giorni di pioggia e di gelo, ondate di calore, escursione termica, nebbie, notti tropicali, bombe d’acqua, siccità e soleggiamento, è stato assegnato valore 1. Sommando tutti i valori il risultato è stata la classifica generale». Milano, con il suo clima continentale, non si piazza molto bene, si trova all’89mo posto. Peggio hanno fatto altre città di pianura come Lodi, Modena, Mantova, Piacenza, Pavia, Novara, Ferrara e Padova,  che compaiono nelle ultime posizioni a conferma che la parte centrale della grande pianura del Nord, soprattutto lungo il corso del Po tra Emilia e Lombardia, a causa delle particolari condizioni geografiche che influenzano anche il clima (scarsa circolazione dell’aria, temperature rigide d’inverno e calde d’estate con altissima umidità relativa, frequenti gelate e giornate nebbiose) non sono certo le migliori d’Italia sotto l’aspetto bioclimatico. ',
             header_title: '3.Quale è la città in Italia dove si vive meglio dal punto di vista climatico?',
             location: {
-              center: [10.989990, 42.616398],
+              center: [9.889990, 45.516398],
               zoom: 5.6,
               pitch: 0,
               bearing: 0
