@@ -151,9 +151,9 @@ var map = new mapboxgl.Map({
     accessToken: 'pk.eyJ1IjoibWF0dGVvc2FjY2hpIiwiYSI6ImNrazFrdG5hNzBzM2oycW1manJvbDl6ZGoifQ.FOB7LTrZU3E4nF270xUyxA',
     center: config.chapters[0].location.center,
     zoom: config.chapters[0].location.zoom,
-    interactive: false,
+    // interactive: false,
 });
-
+map.scrollZoom.disable();
 
 
 var scroller = scrollama();
@@ -202,25 +202,29 @@ map.on("load", function() {
         'filter': ['all', filterYear]
     });
 
-
     map.addLayer({
       id: 'posizione-text',
       type: 'symbol',
       source: 'classifica',
       filter: ['has', category],
       paint: {
-        "text-color": "rgba(255,255,255, 255)",
+        "text-color": "rgba(255,255,255,255)",
         'text-opacity': 0
       },
       layout: {
       'text-field': `{${category}}`,
       'text-font': ['Arial Unicode MS Bold'],
-      'text-size': 10
+      'text-size': 11,
+      'text-allow-overlap': true,
+       'text-ignore-placement': true,
+       'icon-allow-overlap': true,
+       'icon-ignore-placement': true,
     },
     'filter': ['all', filterYear]
     });
 
-
+let a = map.getSource("classifica")
+  console.log(a)
     // map.on("sourcedata", function(e) {
     //   console.log(e)
         // if (map.getSource('classifica') && map.isSourceLoaded('classifica')) {
@@ -235,12 +239,12 @@ map.on("load", function() {
                     .setLngLat(feature.geometry.coordinates)
                     .setHTML('<div id=\'popup\' class=\'popup\' style=\'z-index: 10;\'>' +
                               '<ul>' +
-                              '<li> ' + feature.properties['CITY'] + ' </li>' +
-                              '<li> Ondate di calore' + feature.properties['POS_NOTTI_TROPICALI'] + ' </li>' +
-                              '<li> Sole' + feature.properties['POS_SOLEGGIAMENTO'] + ' </li>' +
-                              '<li> Umidità' + feature.properties['POS_COMFORT_PER_UMIDITA'] + ' </li>' +
-                              '<li> Temperatura' + feature.properties['POS_INDICE_DI_CALORE'] + ' </li>' +
-                              '<li> Pioggia' + feature.properties['POS_PIOGGE'] + ' </li>' +
+                              '<li> <h4>' + feature.properties['CITY'] + '</h4> </li>' +
+                              '<li> Ondate di calore: ' + feature.properties['POS_NOTTI_TROPICALI'] + ' </li>' +
+                              '<li> Sole: ' + feature.properties['POS_SOLEGGIAMENTO'] + ' </li>' +
+                              '<li> Umidità: ' + feature.properties['POS_COMFORT_PER_UMIDITA'] + ' </li>' +
+                              '<li> Temperatura: ' + feature.properties['POS_INDICE_DI_CALORE'] + ' </li>' +
+                              '<li> Pioggia: ' + feature.properties['POS_PIOGGE'] + ' </li>' +
                               '</ul></div>')
                     .setLngLat(feature.geometry.coordinates)
                     .addTo(map);

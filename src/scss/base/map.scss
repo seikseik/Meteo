@@ -93,10 +93,19 @@
 }
 
 .light {
-  color: $greenText ;
+  color: $dgreen ;
   background-color: $white;
   border-radius: 10px;
   @include shadow;
+  h3{
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    @include mono_m;
+    letter-spacing: normal;
+  }
+  strong{
+    @include serif_b;
+  }
 }
 
 .dark {
@@ -145,6 +154,45 @@
 .popup{
   color:$dgreen;
 }
+.mapboxgl-popup {
+  z-index: 999999;
+}
+.mapboxgl-popup-content{
+  background: $white;
+  @include mono_r;
+  @include shadow;
+  padding: 10px 20px;
+  padding-bottom: 20px;
+  border-radius: 10px;
+  h4{
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+}
+.mapboxgl-popup-tip, .mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip{
+  border-color: $white;
+  display: none;
+}
+
+.mapboxgl-popup-close-button{
+  position: absolute;
+  right: -6px;
+  background: $white;
+  width: 25px;
+  height: 25px;
+  border-radius: 100%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  border: 1px solid $dgreen;
+  top: -6px;
+  cursor: pointer;
+  &:hover{
+    background: $white;
+  }
+}
+
 
 #year-selector{
   position: fixed;

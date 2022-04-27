@@ -124,6 +124,8 @@ video {
 // Addresses margins handled incorrectly in IE6/7
 body {
   margin: 0;
+  overscroll-behavior-y: none;
+
 }
 
 // Remove list item style
