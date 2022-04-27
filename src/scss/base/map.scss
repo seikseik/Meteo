@@ -148,8 +148,16 @@
 
 #year-selector{
   position: fixed;
-  top:300px;
-  right:10%;
+  top:150px;
+  right:5vw;
+  padding: 10px 15px;
+  background: $dgreen;
+  color:white;
+  border-radius: 10px;
+  border:none;
+  outline: none;
+  font-family: "IBM Plex Mono";
+  font-size: 16px;
 }
 #category-selector{
   position: fixed;

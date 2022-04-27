@@ -163,18 +163,29 @@ export let config = {
             rotateAnimation: false,
             callback: '',
             onChapterEnter: [
-              // {
-              //     layer: 'class',
-              //     opacity: 1,
-              //     duration: 100
-              // }
+              {
+                  layer: 'classifica-custom',
+                  opacity: 1,
+                  duration: 100
+              },
+              {
+                  layer: 'posizione-text',
+                  opacity: 1,
+                  duration: 100
+              }
+
             ],
             onChapterExit: [
-              // {
-              //     layer: 'class',
-              //     opacity: 0,
-              //     duration: 1000
-              // }
+              {
+                  layer: 'classifica-custom',
+                  opacity: 0,
+                  duration: 1000
+              },
+              {
+                  layer: 'posizione-text',
+                  opacity: 0,
+                  duration: 100
+              }
             ]
         }
     ]

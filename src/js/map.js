@@ -144,34 +144,25 @@ if (footer.innerText.length > 0) {
 
 mapboxgl.accessToken = config.accessToken;
 
-// const transformRequest = (url) => {
-//     const hasQuery = url.indexOf("?") !== -1;
-//     const suffix = hasQuery ? "&pluginName=scrollytellingV2" : "?pluginName=scrollytellingV2";
-//     return {
-//       url: url + suffix
-//     }
-// }
 
 var map = new mapboxgl.Map({
     container: 'map',
-    style: config.style,
+    style: 'mapbox://styles/matteosacchi/cl1aoej5q004314pkuhnw6gxm',
+    accessToken: 'pk.eyJ1IjoibWF0dGVvc2FjY2hpIiwiYSI6ImNrazFrdG5hNzBzM2oycW1manJvbDl6ZGoifQ.FOB7LTrZU3E4nF270xUyxA',
     center: config.chapters[0].location.center,
     zoom: config.chapters[0].location.zoom,
     interactive: false,
-    // transformRequest: transformRequest,
-    projection: config.projection
 });
 
 
 
 var scroller = scrollama();
 
+let filterYear = ['==', ['number', ['get', 'YEAR']], 2021];
+let category = 'POS_INDICE_VIVIBILITA';
 
 map.on("load", function() {
-
-  let filterYear = ['==', ['number', ['get', 'YEAR']], 2021];
-  let category = 'POS_INDICE_VIVIBILITA';
-
+    console.log("ciao")
   map.addSource('classifica', {
     type: 'geojson',
     data: data,
@@ -205,6 +196,8 @@ map.on("load", function() {
               },
             'circle-stroke-color': 'white',
             'circle-stroke-width': 1,
+            'circle-opacity': 0,
+            'circle-stroke-opacity': 0,
         },
         'filter': ['all', filterYear]
     });
@@ -216,10 +209,11 @@ map.on("load", function() {
       source: 'classifica',
       filter: ['has', category],
       paint: {
-        "text-color": "#ffffff"
+        "text-color": "rgba(255,255,255, 255)",
+        'text-opacity': 0
       },
       layout: {
-      'text-field': '{POS_INDICE_VIVIBILITA}',
+      'text-field': `{${category}}`,
       'text-font': ['Arial Unicode MS Bold'],
       'text-size': 10
     },
@@ -227,11 +221,12 @@ map.on("load", function() {
     });
 
 
-    map.on("sourcedata", function(e) {
-        if (map.getSource('classifica') && map.isSourceLoaded('classifica')) {
+    // map.on("sourcedata", function(e) {
+    //   console.log(e)
+        // if (map.getSource('classifica') && map.isSourceLoaded('classifica')) {
               map.on('click', function(e) {
 
-                var features = map.queryRenderedFeatures(e.point, {
+                var features = map.queryRenderedFeatures([e.point.x, e.point.y + 50], {
                     layers: ["classifica-custom"]
                   });
 
@@ -252,8 +247,8 @@ map.on("load", function() {
 
               });
 
-        }
-    });
+        // }
+    // });
 
 
     scroller
@@ -326,23 +321,26 @@ for(var i = 0; i < options.length; i++) {
 }
 
 
-var selectCategory = document.getElementById("category-selector");
-var optionsCategory = ["Ondate di Calore", "Temperatura", "Indice totale", "Pioggia", "Umidità", "Sole"];
-
-for(var j = 0; j < optionsCategory.length; j++) {
-    var opt = optionsCategory[j];
-    var el = document.createElement("option");
-    el.textContent = opt;
-    el.value = opt;
-    selectCategory.appendChild(el);
-}
-
-select.addEventListener("change", function(e){
-  let value =  parseInt(this.value, 10);
-  map.setFilter('classifica-custom', ['==', ['number', ['get', 'YEAR']], value]);
-});
+// var selectCategory = document.getElementById("category-selector");
+// var optionsCategory = ["Ondate di Calore", "Temperatura", "Indice totale", "Pioggia", "Umidità", "Sole"];
+//
+// for(var j = 0; j < optionsCategory.length; j++) {
+//     var opt = optionsCategory[j];
+//     var el = document.createElement("option");
+//     el.textContent = opt;
+//     el.value = opt;
+//     selectCategory.appendChild(el);
+// }
 
 select.addEventListener("change", function(e){
   let value =  parseInt(this.value, 10);
   map.setFilter('classifica-custom', ['==', ['number', ['get', 'YEAR']], value]);
+  map.setFilter('posizione-text', ['==', ['number', ['get', 'YEAR']], value]);
 });
+
+// selectCategory.addEventListener("change", function(e){
+//   let value =  this.value.toLowerCase();
+//   if(value == "umidità"){
+//     category = 'POS_COMFORT_PER_UMIDITA';
+//   }
+// });
