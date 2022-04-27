@@ -1,10 +1,10 @@
 import mapboxgl from '!mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import  { config } from './config.js'
+import * as data from './db_classifiche_anni.json';
 
 
 // map
-
 var initLoad = true;
 var layerTypes = {
     'fill': ['fill-opacity'],
@@ -144,80 +144,118 @@ if (footer.innerText.length > 0) {
 
 mapboxgl.accessToken = config.accessToken;
 
-const transformRequest = (url) => {
-    const hasQuery = url.indexOf("?") !== -1;
-    const suffix = hasQuery ? "&pluginName=scrollytellingV2" : "?pluginName=scrollytellingV2";
-    return {
-      url: url + suffix
-    }
-}
+// const transformRequest = (url) => {
+//     const hasQuery = url.indexOf("?") !== -1;
+//     const suffix = hasQuery ? "&pluginName=scrollytellingV2" : "?pluginName=scrollytellingV2";
+//     return {
+//       url: url + suffix
+//     }
+// }
 
 var map = new mapboxgl.Map({
     container: 'map',
     style: config.style,
     center: config.chapters[0].location.center,
     zoom: config.chapters[0].location.zoom,
-    bearing: config.chapters[0].location.bearing,
-    pitch: config.chapters[0].location.pitch,
     interactive: false,
-    transformRequest: transformRequest,
+    // transformRequest: transformRequest,
     projection: config.projection
 });
 
-// Create a inset map if enabled in config.js
-if (config.inset) {
- var insetMap = new mapboxgl.Map({
-    container: 'mapInset', // container id
-    style: 'mapbox://styles/mapbox/dark-v10', //hosted style id
-    center: config.chapters[0].location.center,
-    // Hardcode above center value if you want insetMap to be static.
-    zoom: 3, // starting zoom
-    hash: false,
-    interactive: false,
-    attributionControl: false,
-    //Future: Once official mapbox-gl-js has globe view enabled,
-    //insetmap can be a globe with the following parameter.
-    //projection: 'globe'
-  });
-}
 
-if (config.showMarkers) {
-    var marker = new mapboxgl.Marker({ color: config.markerColor });
-    marker.setLngLat(config.chapters[0].location.center).addTo(map);
-}
 
-// instantiate the scrollama
 var scroller = scrollama();
 
 
 map.on("load", function() {
-    if (config.use3dTerrain) {
-        map.addSource('mapbox-dem', {
-            'type': 'raster-dem',
-            'url': 'mapbox://mapbox.mapbox-terrain-dem-v1',
-            'tileSize': 512,
-            'maxzoom': 14
-        });
-        // add the DEM source as a terrain layer with exaggerated height
-        map.setTerrain({ 'source': 'mapbox-dem', 'exaggeration': 1.5 });
 
-        // add a sky layer that will show when the map is highly pitched
-        map.addLayer({
-            'id': 'sky',
-            'type': 'sky',
-            'paint': {
-                'sky-type': 'atmosphere',
-                'sky-atmosphere-sun': [0.0, 0.0],
-                'sky-atmosphere-sun-intensity': 15
-            }
-        });
-    };
+  let filterYear = ['==', ['number', ['get', 'YEAR']], 2021];
+  let category = 'POS_INDICE_VIVIBILITA';
 
-    // As the map moves, grab and update bounds in inset map.
-    if (config.inset) {
-    map.on('move', getInsetBounds);
-    }
-    // setup the instance, pass callback functions
+  map.addSource('classifica', {
+    type: 'geojson',
+    data: data,
+  });
+
+  map.addLayer({
+        'id': "classifica-custom",
+        'type': 'circle',
+        'source': 'classifica',
+        'layout': {
+            'visibility': 'visible',
+        },
+        'paint': {
+            'circle-radius': {
+                'base': 5,
+                'stops': [[12, 12], [22, 12]]
+            },
+
+            'circle-color': {
+              'property': category,
+              'type': 'exponential',
+              'stops': [
+                  [0, 'rgb(236,222,239)'],
+                  [10, 'rgb(236,222,239)'],
+                  [20, 'rgb(208,209,230)'],
+                  [30, 'rgb(166,189,219)'],
+                  [40, 'rgb(103,169,207)'],
+                  [50, 'rgb(28,144,153)'],
+                  [108, 'rgb(1,108,89)']
+                ]
+              },
+            'circle-stroke-color': 'white',
+            'circle-stroke-width': 1,
+        },
+        'filter': ['all', filterYear]
+    });
+
+
+    map.addLayer({
+      id: 'posizione-text',
+      type: 'symbol',
+      source: 'classifica',
+      filter: ['has', category],
+      paint: {
+        "text-color": "#ffffff"
+      },
+      layout: {
+      'text-field': '{POS_INDICE_VIVIBILITA}',
+      'text-font': ['Arial Unicode MS Bold'],
+      'text-size': 10
+    },
+    'filter': ['all', filterYear]
+    });
+
+
+    map.on("sourcedata", function(e) {
+        if (map.getSource('classifica') && map.isSourceLoaded('classifica')) {
+              map.on('click', function(e) {
+
+                var features = map.queryRenderedFeatures(e.point, {
+                    layers: ["classifica-custom"]
+                  });
+
+                  var feature = features[0];
+                  var popup = new mapboxgl.Popup({ offset: [0, -15] })
+                    .setLngLat(feature.geometry.coordinates)
+                    .setHTML('<div id=\'popup\' class=\'popup\' style=\'z-index: 10;\'>' +
+                              '<ul>' +
+                              '<li> ' + feature.properties['CITY'] + ' </li>' +
+                              '<li> Ondate di calore' + feature.properties['POS_NOTTI_TROPICALI'] + ' </li>' +
+                              '<li> Sole' + feature.properties['POS_SOLEGGIAMENTO'] + ' </li>' +
+                              '<li> Umidità' + feature.properties['POS_COMFORT_PER_UMIDITA'] + ' </li>' +
+                              '<li> Temperatura' + feature.properties['POS_INDICE_DI_CALORE'] + ' </li>' +
+                              '<li> Pioggia' + feature.properties['POS_PIOGGE'] + ' </li>' +
+                              '</ul></div>')
+                    .setLngLat(feature.geometry.coordinates)
+                    .addTo(map);
+
+              });
+
+        }
+    });
+
+
     scroller
     .setup({
         step: '.step',
@@ -229,12 +267,9 @@ map.on("load", function() {
         response.element.classList.add('active');
         map[chapter.mapAnimation || 'flyTo'](chapter.location);
 
-
+        // header title on change
         header_title.innerHTML = chapter.header_title;
 
-        // Incase you do not want to have a dynamic inset map,
-        // rather want to keep it a static view but still change the
-        // bbox as main map move: comment out the below if section.
         if (config.inset) {
           if (chapter.location.zoom < 5) {
             insetMap.flyTo({center: chapter.location.center, zoom: 0});
@@ -269,91 +304,45 @@ map.on("load", function() {
         if (chapter.onChapterExit.length > 0) {
             chapter.onChapterExit.forEach(setLayerOpacity);
         }
+
     });
 });
-
-//Helper functions for insetmap
-function getInsetBounds() {
-            let bounds = map.getBounds();
-
-            let boundsJson = {
-                "type": "FeatureCollection",
-                "features": [{
-                    "type": "Feature",
-                    "properties": {},
-                    "geometry": {
-                        "type": "Polygon",
-                        "coordinates": [
-                            [
-                                [
-                                    bounds._sw.lng,
-                                    bounds._sw.lat
-                                ],
-                                [
-                                    bounds._ne.lng,
-                                    bounds._sw.lat
-                                ],
-                                [
-                                    bounds._ne.lng,
-                                    bounds._ne.lat
-                                ],
-                                [
-                                    bounds._sw.lng,
-                                    bounds._ne.lat
-                                ],
-                                [
-                                    bounds._sw.lng,
-                                    bounds._sw.lat
-                                ]
-                            ]
-                        ]
-                    }
-                }]
-            }
-
-            if (initLoad) {
-                addInsetLayer(boundsJson);
-                initLoad = false;
-            } else {
-                updateInsetLayer(boundsJson);
-            }
-
-        }
-
-function addInsetLayer(bounds) {
-    insetMap.addSource('boundsSource', {
-        'type': 'geojson',
-        'data': bounds
-    });
-
-    insetMap.addLayer({
-        'id': 'boundsLayer',
-        'type': 'fill',
-        'source': 'boundsSource', // reference the data source
-        'layout': {},
-        'paint': {
-            'fill-color': '#fff', // blue color fill
-            'fill-opacity': 0.2
-        }
-    });
-    // // Add a black outline around the polygon.
-    insetMap.addLayer({
-        'id': 'outlineLayer',
-        'type': 'line',
-        'source': 'boundsSource',
-        'layout': {},
-        'paint': {
-            'line-color': '#000',
-            'line-width': 1
-        }
-    });
-}
-
-function updateInsetLayer(bounds) {
-    insetMap.getSource('boundsSource').setData(bounds);
-}
-
 
 
 // setup resize event
 window.addEventListener('resize', scroller.resize);
+
+
+//  dropdown
+var select = document.getElementById("year-selector");
+var options = ["2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021"];
+
+for(var i = 0; i < options.length; i++) {
+    var opt = options[i];
+    var el = document.createElement("option");
+    el.textContent = opt;
+    el.value = opt;
+    select.appendChild(el);
+}
+
+
+var selectCategory = document.getElementById("category-selector");
+var optionsCategory = ["Ondate di Calore", "Temperatura", "Indice totale", "Pioggia", "Umidità", "Sole"];
+
+for(var j = 0; j < optionsCategory.length; j++) {
+    var opt = optionsCategory[j];
+    var el = document.createElement("option");
+    el.textContent = opt;
+    el.value = opt;
+    selectCategory.appendChild(el);
+}
+
+select.addEventListener("change", function(e){
+  let value =  parseInt(this.value, 10);
+  map.setFilter('classifica-custom', ['==', ['number', ['get', 'YEAR']], value]);
+});
+
+select.addEventListener("change", function(e){
+  let value =  parseInt(this.value, 10);
+  map.setFilter('classifica-custom', ['==', ['number', ['get', 'YEAR']], value]);
+});

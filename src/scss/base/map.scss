@@ -136,3 +136,23 @@
 .mapboxgl-canvas-container.mapboxgl-touch-zoom-rotate.mapboxgl-touch-drag-pan .mapboxgl-canvas {
   touch-action: unset;
 }
+
+#seventh-chapter{
+  opacity: 0;
+  visibility: hidden;
+}
+
+.popup{
+  color:$dgreen;
+}
+
+#year-selector{
+  position: fixed;
+  top:300px;
+  right:10%;
+}
+#category-selector{
+  position: fixed;
+  top:300px;
+  right:20%;
+}

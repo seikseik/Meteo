@@ -45,6 +45,7 @@
     "imagemin-svgo": "^10.0.1",
     "imagesloaded": "^5.0.0",
     "include-media": "^1.4.10",
+    "json-loader": "^0.5.7",
     "mapbox-gl": "^2.8.1",
     "mini-css-extract-plugin": "^2.4.4",
     "postcss": "^8.3.11",

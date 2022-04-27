@@ -1,7 +1,7 @@
 export let config = {
-    style: 'mapbox://styles/lucagorini/cl27ejcwi000915qf4xm4raly',
-    accessToken: 'pk.eyJ1IjoibHVjYWdvcmluaSIsImEiOiJjbDI3Y3dndmYycnd0M2ltdHZzNmt5OG40In0.4ijr53gm7fQJSc5vVoZFeQ',
-    showMarkers: true,
+    style: 'mapbox://styles/matteosacchi/cl1aoej5q004314pkuhnw6gxm',
+    accessToken: 'pk.eyJ1IjoibWF0dGVvc2FjY2hpIiwiYSI6ImNrazFrdG5hNzBzM2oycW1manJvbDl6ZGoifQ.FOB7LTrZU3E4nF270xUyxA',
+    showMarkers: false,
     markerColor: '#3FB1CE',
     inset: false,
     theme: 'light',
@@ -151,7 +151,7 @@ export let config = {
             hidden: false,
             title: '',
             image: '',
-            description: 'In una nazione che si estende per quasi 1.300 chilometri in linea d’aria tra il punto più settentrionale (che si trova praticamente in Europa centrale) e quello più meridionale (escludendo Lampedusa  è Capo Passero in Sicilia, alla stessa latitudine di Tunisi) la variabilità climatica è molto elevata. Alla quale si aggiunge la catena montuosa più alta d’Europa e una dorsale appenninica lungo tutta la penisola, bagnata su tre lati dal mare. Insomma, una situazione complessa sotto il profilo meteorologico, forse la più variegata del continente, che da aree con clima glaciale passa a quelle con clima pre-desertico. Ricavare quindi una tabella significativa ha comportato un grande lavoro di analisi e bilanciamento tra tutti i vari indici con compongono l’insieme che va sotto il nome di clima.',
+            description: '',
             header_title: 'ESPLORA LA MAPPA',
             location: {
               center: [10.989990, 42.616398],
@@ -162,8 +162,20 @@ export let config = {
             mapAnimation: 'flyTo',
             rotateAnimation: false,
             callback: '',
-            onChapterEnter: [],
-            onChapterExit: []
+            onChapterEnter: [
+              // {
+              //     layer: 'class',
+              //     opacity: 1,
+              //     duration: 100
+              // }
+            ],
+            onChapterExit: [
+              // {
+              //     layer: 'class',
+              //     opacity: 0,
+              //     duration: 1000
+              // }
+            ]
         }
     ]
 };
