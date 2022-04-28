@@ -53,11 +53,16 @@
 .hero_title_container{
   position: absolute;
   z-index: 4;
-  top: 8vh;
+  top: 0;
   width:100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+	height: 100%;
+	.hero_title_wrapper{
+		height: 60vh;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
   h1{
     @include serif_b;
     width:50vw;
@@ -85,6 +90,9 @@
 }
 
 .scroll-down{
+	position: absolute;
+	right:30px;
+	bottom:50px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -126,7 +134,7 @@
   position: absolute;
   top:0;
   width:100%;
-  height: 80vh;
+  height: 60vh;
   z-index: 0;
 }
 .sole{

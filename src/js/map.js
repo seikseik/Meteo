@@ -2,6 +2,7 @@ import mapboxgl from '!mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import  { config } from './config.js'
 import * as data from './db_classifiche_anni.json';
+import scrollama from "scrollama"; // or...
 
 
 // map
@@ -209,7 +210,7 @@ map.on("load", function() {
         'filter': ['all', filterYear, filterCategory]
     });
 
-    map.addLayer({
+  map.addLayer({
       id: 'posizione-text',
       type: 'symbol',
       source: 'classifica',
@@ -231,7 +232,7 @@ map.on("load", function() {
     });
 
 
-    map.on('click', function(e) {
+  map.on('click', function(e) {
       console.log(e.properties)
 
       var features = map.queryRenderedFeatures([e.point.x, e.point.y + 50], {
@@ -256,7 +257,6 @@ map.on("load", function() {
             .addTo(map);
         }
     });
-
 
     scroller.setup({
         step: '.step',
