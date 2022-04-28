@@ -32,7 +32,7 @@
       }
     }
   }
-	@include media('>=phone') {
+	@include media('<=phone') {
 		.header_container{
 			padding: 10px 20px;
 			align-items: center;
@@ -72,7 +72,7 @@
     font-size: $heading;
   }
 
-	@include media('>=phone') {
+	@include media('<=phone') {
 		h1{
 			font-size: 30px;
 			width:100%;
@@ -102,7 +102,7 @@
 		object-fit: none;
 		 animation: dribble 0.9s 0s infinite alternate ease-in-out forwards;
   }
-	@include media('>=phone') {
+	@include media('<=phone') {
 		font-size: 18px;
 	}
 }
@@ -165,8 +165,8 @@
 		margin-bottom: -5px;
 		z-index: 3;
   }
-	@include media('>=phone') {
-		height: 70vh;
+	@include media('<=phone') {
+		height: 75vh;
 	}
 }
 .nuvola-dx{
@@ -179,7 +179,7 @@
     width:100%;
     height: auto;
   }
-	@include media('>=phone') {
+	@include media('<=phone') {
 		top:-8%;
 	}
 }

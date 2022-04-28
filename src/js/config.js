@@ -1,3 +1,11 @@
+let zoom = 5.6;
+let zoomLast = 5.6;
+if(window.innerWidth < 768){
+  zoom = 4.3;
+  zoomLast = 5;
+}
+
+
 export let config = {
     showMarkers: false,
     markerColor: '#3FB1CE',
@@ -15,7 +23,7 @@ export let config = {
             header_title: 'Quale città nel 2021 è stata la migliore dal punto di vista climatico?',
             location: {
                 center: [10.989990, 42.616398],
-                zoom: 5.6,
+                zoom: zoom,
                 pitch: 0,
                 bearing: 0
             },
@@ -57,7 +65,7 @@ export let config = {
             header_title: 'Le città meno favorite dal clima',
             location: {
               center: [10.989990, 42.616398],
-              zoom: 5.6,
+              zoom: zoom,
               pitch: 0,
               bearing: 0
                 // flyTo additional controls-
@@ -103,7 +111,7 @@ export let config = {
             header_title: 'Escursione termica',
             location: {
               center: [10.989990, 42.616398],
-              zoom: 5.6,
+              zoom: zoom,
               pitch: 0,
               bearing: 0
             },
@@ -144,7 +152,7 @@ export let config = {
             header_title: 'Piovosità, nuvole e ondate di calore',
             location: {
               center: [10.989990, 42.616398],
-              zoom: 5.6,
+              zoom: zoom,
               pitch: 0,
               bearing: 0
             },
@@ -184,7 +192,7 @@ export let config = {
             header_title: 'Vento e siccità',
             location: {
               center: [10.989990, 42.616398],
-              zoom: 5.6,
+              zoom: zoom,
               pitch: 0,
               bearing: 0
             },
@@ -224,7 +232,7 @@ export let config = {
             header_title: 'ESPLORA LA MAPPA',
             location: {
               center: [10.989990, 42.616398],
-              zoom: 5.6,
+              zoom: zoomLast,
               pitch: 0,
               bearing: 0
             },

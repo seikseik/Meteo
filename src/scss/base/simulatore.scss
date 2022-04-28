@@ -3,7 +3,7 @@
 }
 #app{
   padding: 0 20px;
-  @include media('>=phone') {
+  @include media('<=phone') {
       display: none;
   }
 }
@@ -22,7 +22,7 @@
     @include mono_m;
   }
 
-  @include media('>=phone') {
+  @include media('<=phone') {
     width:100%;
   }
 }

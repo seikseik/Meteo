@@ -235,12 +235,13 @@ map.on("load", function() {
     //   console.log(e)
         // if (map.getSource('classifica') && map.isSourceLoaded('classifica')) {
               map.on('click', function(e) {
+                console.log(e.properties)
 
-                if(e.properties){
                 var features = map.queryRenderedFeatures([e.point.x, e.point.y + 50], {
                     layers: ["classifica-custom"]
-                  });
-                  console.log(features);
+                });
+
+                if(features != null){
 
                     var feature = features[0];
                     var popup = new mapboxgl.Popup({ offset: [0, -15] })
@@ -256,9 +257,7 @@ map.on("load", function() {
                                 '</ul></div>')
                       .setLngLat(feature.geometry.coordinates)
                       .addTo(map);
-
                   }
-
               });
 
         // }
