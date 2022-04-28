@@ -1059,6 +1059,20 @@ input {
 .hero_heading .header_container ul li:first-child {
   margin-right: 20px;
 }
+@media (min-width: 320px) {
+  .hero_heading .header_container {
+    padding: 10px 20px;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .hero_heading .header_container .logo_press {
+    width: 50%;
+  }
+  .hero_heading .header_container .social_icons li {
+    width: 30px;
+  }
+}
 
 .hero_title_container {
   position: absolute;
@@ -1090,6 +1104,16 @@ input {
   font-weight: 400;
   margin-bottom: 20px;
   font-size: 30px;
+}
+@media (min-width: 320px) {
+  .hero_title_container h1 {
+    font-size: 30px;
+    width: 100%;
+    padding: 0px 30px;
+  }
+  .hero_title_container h3 {
+    font-size: 20px;
+  }
 }
 
 .scroll-down {
@@ -1123,6 +1147,11 @@ input {
      object-fit: none;
   -webkit-animation: dribble 0.9s 0s infinite alternate ease-in-out forwards;
           animation: dribble 0.9s 0s infinite alternate ease-in-out forwards;
+}
+@media (min-width: 320px) {
+  .scroll-down {
+    font-size: 18px;
+  }
 }
 
 @-webkit-keyframes dribble {
@@ -1207,6 +1236,11 @@ input {
   margin-bottom: -5px;
   z-index: 3;
 }
+@media (min-width: 320px) {
+  .collina {
+    height: 70vh;
+  }
+}
 
 .nuvola-dx {
   position: absolute;
@@ -1219,6 +1253,11 @@ input {
   width: 100%;
   height: auto;
 }
+@media (min-width: 320px) {
+  .nuvola-dx {
+    top: -8%;
+  }
+}
 
 .nuvola-sx {
   position: absolute;
@@ -1230,6 +1269,11 @@ input {
 .nuvola-sx img {
   width: 100%;
   height: auto;
+}
+@media (min-width: 320px) {
+  .nuvola-sx {
+    top: -8%;
+  }
 }
 
 .spacing {
@@ -1412,8 +1456,6 @@ label {
 }
 
 #header {
-  margin: auto;
-  width: 100%;
   position: relative;
   z-index: 5;
 }
@@ -1428,7 +1470,7 @@ label {
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
 }
 .heading_map h2 {
-  padding: 15px 0;
+  padding: 15px 20px;
   background: #003745;
   border-radius: 10px;
   font-family: "IBM Plex Serif", serif;
@@ -1437,25 +1479,22 @@ label {
   text-align: center;
   color: #F7F7F7;
 }
+@media (min-width: 320px) {
+  .heading_map {
+    top: 15px;
+  }
+  .heading_map h2 {
+    line-height: 1.4;
+    font-size: 18px;
+    padding: 10px;
+  }
+}
 
 #header h1,
 #header h2,
 #header p {
   margin: 0;
-  padding: 2vh 2vw;
   text-align: center;
-}
-
-#footer {
-  width: 100%;
-  min-height: 5vh;
-  padding-top: 2vh;
-  padding-bottom: 2vh;
-  text-align: center;
-  line-height: 25px;
-  font-size: 13px;
-  position: relative;
-  z-index: 5;
 }
 
 #features {
@@ -1515,6 +1554,11 @@ label {
 .step {
   padding-bottom: 50vh;
   opacity: 0.25;
+  pointer-events: none;
+}
+
+#seventh-chapter {
+  pointer-events: all;
 }
 
 .step.active {
@@ -1525,6 +1569,12 @@ label {
   padding: 50px 30px;
   line-height: 1.5;
   font-size: 16px;
+}
+@media (min-width: 320px) {
+  .step div {
+    padding: 20px 20px;
+    font-size: 14px;
+  }
 }
 
 .step img {
@@ -1608,6 +1658,11 @@ label {
 #app {
   padding: 0 20px;
 }
+@media (min-width: 320px) {
+  #app {
+    display: none;
+  }
+}
 
 .note_metodologiche {
   padding: 30px;
@@ -1624,6 +1679,11 @@ label {
   font-family: "IBM Plex Mono", serif;
   font-weight: 500;
   letter-spacing: 1px;
+}
+@media (min-width: 320px) {
+  .note_metodologiche {
+    width: 100%;
+  }
 }
 
 footer {

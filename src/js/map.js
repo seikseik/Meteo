@@ -80,7 +80,6 @@ if (header.innerText.length > 0) {
     header.setAttribute('id', 'header');
 }
 
-
 config.chapters.forEach((record, idx) => {
     var container = document.createElement('div');
     var chapter = document.createElement('div');
@@ -121,11 +120,7 @@ config.chapters.forEach((record, idx) => {
 
     features.appendChild(container);
 });
-
-
 story.appendChild(features);
-
-
 
 
 var footer = document.createElement('div');
@@ -159,13 +154,26 @@ map.scrollZoom.disable();
 var scroller = scrollama();
 
 let filterYear = ['==', ['number', ['get', 'YEAR']], 2021];
+let filterCategory = ['==', ['number', ['get', 'YEAR']], 2021];
+
 let category = 'POS_INDICE_VIVIBILITA';
+
+
+let firstSymbolId;
 
 map.on("load", function() {
   map.addSource('classifica', {
     type: 'geojson',
     data: data,
   });
+
+  const layers = map.getStyle().layers;
+    for (const layer of layers) {
+      if (layer.type === 'symbol') {
+      firstSymbolId = layer.id;
+      break;
+    }
+  }
 
   map.addLayer({
         'id': "classifica-custom",
@@ -198,7 +206,7 @@ map.on("load", function() {
             'circle-opacity': 0,
             'circle-stroke-opacity': 0,
         },
-        'filter': ['all', filterYear]
+        'filter': ['all', filterYear, filterCategory]
     });
 
   map.addLayer({
@@ -219,9 +227,8 @@ map.on("load", function() {
      'icon-allow-overlap': true,
      'icon-ignore-placement': true,
   },
-  'filter': ['all', filterYear]
+  'filter': ['all', filterYear, filterCategory]
   });
-
 
 
     // map.on("sourcedata", function(e) {
@@ -229,24 +236,28 @@ map.on("load", function() {
         // if (map.getSource('classifica') && map.isSourceLoaded('classifica')) {
               map.on('click', function(e) {
 
+                if(e.properties){
                 var features = map.queryRenderedFeatures([e.point.x, e.point.y + 50], {
                     layers: ["classifica-custom"]
                   });
+                  console.log(features);
 
-                  var feature = features[0];
-                  var popup = new mapboxgl.Popup({ offset: [0, -15] })
-                    .setLngLat(feature.geometry.coordinates)
-                    .setHTML('<div id=\'popup\' class=\'popup\' style=\'z-index: 10;\'>' +
-                              '<ul>' +
-                              '<li> <h4>' + feature.properties['CITY'] + '</h4> </li>' +
-                              '<li> Ondate di calore: ' + feature.properties['POS_NOTTI_TROPICALI'] + ' </li>' +
-                              '<li> Soleggiamento: ' + feature.properties['POS_SOLEGGIAMENTO'] + ' </li>' +
-                              '<li> Comfort per umidità: ' + feature.properties['POS_COMFORT_PER_UMIDITA'] + ' </li>' +
-                              '<li> Giorni freddi: ' + feature.properties['POS_GIORNI_FREDDI'] + ' </li>' +
-                              '<li> Piogge: ' + feature.properties['POS_PIOGGE'] + ' </li>' +
-                              '</ul></div>')
-                    .setLngLat(feature.geometry.coordinates)
-                    .addTo(map);
+                    var feature = features[0];
+                    var popup = new mapboxgl.Popup({ offset: [0, -15] })
+                      .setLngLat(feature.geometry.coordinates)
+                      .setHTML('<div id=\'popup\' class=\'popup\' style=\'z-index: 10;\'>' +
+                                '<ul>' +
+                                '<li> <h4>' + feature.properties['CITY'] + '</h4> </li>' +
+                                '<li> Ondate di calore: ' + feature.properties['POS_NOTTI_TROPICALI'] + ' </li>' +
+                                '<li> Soleggiamento: ' + feature.properties['POS_SOLEGGIAMENTO'] + ' </li>' +
+                                '<li> Comfort per umidità: ' + feature.properties['POS_COMFORT_PER_UMIDITA'] + ' </li>' +
+                                '<li> Giorni freddi: ' + feature.properties['POS_GIORNI_FREDDI'] + ' </li>' +
+                                '<li> Piogge: ' + feature.properties['POS_PIOGGE'] + ' </li>' +
+                                '</ul></div>')
+                      .setLngLat(feature.geometry.coordinates)
+                      .addTo(map);
+
+                  }
 
               });
 
@@ -321,7 +332,6 @@ for(var i = 0; i < options.length; i++) {
     select.appendChild(el);
 }
 
-
 select.addEventListener("change", function(e){
   let value =  parseInt(this.value, 10);
   map.setFilter('classifica-custom', ['==', ['number', ['get', 'YEAR']], value]);
@@ -341,29 +351,55 @@ for(var j = 0; j < optionsCategory.length; j++) {
 }
 
 
-
+// function addCategoryLayer(input){
+//   let firstLayer = 'posizione-text'
+//
+//     map.addLayer({
+//       id: "category-text",
+//       type: 'symbol',
+//       source: 'classifica',
+//       filter: ['has', input],
+//       paint: {
+//         "text-color": "rgba(255,255,255,255)",
+//         'text-opacity': 0
+//       },
+//       layout: {
+//       'text-field': `ciaone`,
+//       'text-font': ['Arial Unicode MS Bold'],
+//       'text-size': 11,
+//       'text-allow-overlap': true,
+//        'text-ignore-placement': true,
+//        'icon-allow-overlap': true,
+//        'icon-ignore-placement': true,
+//     },
+//     'filter': ['all', filterYear]
+//   }, firstSymbolId);
+//
+//   if (map.getLayer('posizione-text')) {
+//     map.removeLayer('posizione-text');
+//   }
+// }
 
 selectCategory.addEventListener("change", function(e){
   let a = map.getLayer("posizione-text")
   let value =  this.value.toLowerCase();
-  if(value == "Comfort per umidità"){
+  if(value == "comfort per umidità"){
     category = 'POS_COMFORT_PER_UMIDITA';
   }
-  if(value == "Ondate di Calore"){
+  if(value == "ondate di calore"){
     category = 'POS_ONDATE_DI_CALORE';
   }
-  if(value == "Soleggiamento"){
+  if(value == "soleggiamento"){
     category = 'POS_SOLEGGIAMENTO';
   }
-  if(value == "Indice generale"){
+  if(value == "indice generale"){
     category = 'POS_INDICE_VIVIBILITA';
   }
-  if(value == "Piogge"){
+  if(value == "piogge"){
     category = 'POS_PIOGGE';
   }
-  if(value == "Giorni freddi"){
-    category = 'POS_GIORNI_FREDDI';
+  if(value == "giorni freddi"){
+      map.setFilter('posizione-text', ['==', ['number', ['get', 'YEAR']], value]);
   }
-  console.log(a)
 
 });

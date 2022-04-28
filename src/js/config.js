@@ -1,6 +1,4 @@
 export let config = {
-    style: 'mapbox://styles/lucagorini/cl2iyqrtw001814rjhh32bsvg',
-    accessToken: 'pk.eyJ1IjoibHVjYWdvcmluaSIsImEiOiJja28yd2tzdjQxM3NqMnFwZ3BremZ2Y3hrIn0.TOK_D8r2LULbVb-3ULVf8Q',
     showMarkers: false,
     markerColor: '#3FB1CE',
     inset: false,
@@ -112,7 +110,8 @@ export let config = {
             mapAnimation: 'flyTo',
             rotateAnimation: false,
             callback: '',
-            onChapterEnter: [  {
+            onChapterEnter: [
+              {
                   layer: 'paragrafo-3',
                   opacity: 1,
                   duration: 300
@@ -175,7 +174,6 @@ export let config = {
               }
             ]
         },
-
         {
             id: 'fifth-chapter',
             alignment: 'left',

@@ -20,8 +20,8 @@
 }
 
 #header {
-  margin: auto;
-  width: 100%;
+  // margin: auto;
+  // width: 100%;
   position: relative;
   z-index: 5;
 }
@@ -34,7 +34,7 @@
   z-index: 9;
   @include shadow;
   h2{
-    padding: 15px 0;
+    padding: 15px 20px;
     background: $dgreen;
     border-radius: 10px;
     @include serif_m;
@@ -42,26 +42,21 @@
     text-align: center;
     color: $white;
   }
+  @include media('>=phone') {
+    top:15px;
+    h2{
+      line-height: 1.4;
+      font-size: 18px;
+      padding: 10px;
+    }
+  }
 }
 
 #header h1,
 #header h2,
 #header p {
   margin: 0;
-  padding: 2vh 2vw;
   text-align: center;
-}
-
-#footer {
-  width: 100%;
-  min-height: 5vh;
-  padding-top: 2vh;
-  padding-bottom: 2vh;
-  text-align: center;
-  line-height: 25px;
-  font-size: 13px;
-  position: relative;
-  z-index: 5;
 }
 
 #features {
@@ -117,6 +112,10 @@
 .step {
   padding-bottom: 50vh;
   opacity: 0.25;
+  pointer-events: none;
+}
+#seventh-chapter{
+  pointer-events: all;
 }
 
 .step.active {
@@ -127,6 +126,10 @@
   padding: 50px 30px;
   line-height: 1.5;
   font-size: 16px;
+  @include media('>=phone') {
+    padding: 20px 20px;
+    font-size: 14px;
+  }
 }
 
 .step img {

@@ -32,6 +32,20 @@
       }
     }
   }
+	@include media('>=phone') {
+		.header_container{
+			padding: 10px 20px;
+			align-items: center;
+			.logo_press{
+				width:50%;
+			}
+			.social_icons{
+				li{
+					width:30px;
+				}
+			}
+		}
+	}
 }
 
 
@@ -57,6 +71,17 @@
     margin-bottom: 20px;
     font-size: $heading;
   }
+
+	@include media('>=phone') {
+		h1{
+			font-size: 30px;
+			width:100%;
+			padding: 0px 30px;
+		}
+		h3{
+			font-size: 20px;
+		}
+	}
 }
 
 .scroll-down{
@@ -77,6 +102,9 @@
 		object-fit: none;
 		 animation: dribble 0.9s 0s infinite alternate ease-in-out forwards;
   }
+	@include media('>=phone') {
+		font-size: 18px;
+	}
 }
 
 @keyframes dribble{
@@ -91,8 +119,6 @@
 #hero, .layer {
 	min-height: 800px;
 }
-
-
 
 
 .background{
@@ -139,6 +165,9 @@
 		margin-bottom: -5px;
 		z-index: 3;
   }
+	@include media('>=phone') {
+		height: 70vh;
+	}
 }
 .nuvola-dx{
   position: absolute;
@@ -150,6 +179,9 @@
     width:100%;
     height: auto;
   }
+	@include media('>=phone') {
+		top:-8%;
+	}
 }
 .nuvola-sx{
   position: absolute;
@@ -161,6 +193,9 @@
     width:100%;
     height: auto;
   }
+	@include media('>=phone') {
+		top:-8%;
+	}
 }
 
 .spacing{
