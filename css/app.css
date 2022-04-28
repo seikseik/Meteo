@@ -1063,7 +1063,7 @@ input {
 .hero_title_container {
   position: absolute;
   z-index: 4;
-  bottom: 8vh;
+  top: 8vh;
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1079,7 +1079,7 @@ input {
 .hero_title_container h1 {
   font-family: "IBM Plex Serif", serif;
   font-weight: 600;
-  width: 40vw;
+  width: 50vw;
   font-size: 80px;
   line-height: 1.2;
   text-align: center;
@@ -1116,8 +1116,36 @@ input {
 }
 .scroll-down img {
   cursor: pointer;
+  width: 50px !important;
+  height: auto !important;
+  min-width: unset !important;
+  -o-object-fit: none;
+     object-fit: none;
+  -webkit-animation: dribble 0.9s 0s infinite alternate ease-in-out forwards;
+          animation: dribble 0.9s 0s infinite alternate ease-in-out forwards;
 }
 
+@-webkit-keyframes dribble {
+  0% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+  100% {
+    -webkit-transform: translateY(25px);
+            transform: translateY(25px);
+  }
+}
+
+@keyframes dribble {
+  0% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+  100% {
+    -webkit-transform: translateY(25px);
+            transform: translateY(25px);
+  }
+}
 #hero, .layer {
   min-height: 800px;
 }
@@ -1348,9 +1376,18 @@ label {
 }
 
 #category-selector {
-  position: fixed;
-  top: 300px;
-  right: 20%;
+  margin: 10px 0;
+  cursor: pointer;
+  padding: 10px 15px;
+  margin-left: 10px;
+  background: #003745;
+  color: white;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  font-family: "IBM Plex Mono";
+  font-size: 16px;
+  max-width: 120px;
 }
 
 #map {
@@ -1568,8 +1605,13 @@ label {
   margin-top: 100px;
 }
 
+#app {
+  padding: 0 20px;
+}
+
 .note_metodologiche {
   padding: 30px;
+  margin-top: 80px;
   font-family: "IBM Plex Mono", serif;
   font-weight: 400;
   letter-spacing: 1px;
