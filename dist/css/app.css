@@ -1122,12 +1122,6 @@ input {
   min-height: 800px;
 }
 
-.spacing {
-  background: #115A6E;
-  height: 10vh;
-  width: 100%;
-}
-
 .background {
   background: #EBDFD9;
   position: absolute;
@@ -1151,9 +1145,44 @@ input {
   animation: spin 30s linear infinite;
 }
 
+.collina-container {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.collina {
+  position: absolute;
+  bottom: 0px;
+  height: 60vh;
+  width: 100%;
+  z-index: 3;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.collina img, .collina svg {
+  width: 100%;
+  height: auto;
+  min-width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  margin-bottom: -5px;
+  z-index: 3;
+}
+
 .nuvola-dx {
   position: absolute;
-  bottom: 25%;
+  top: -15%;
   right: 0;
   width: 35vw;
   z-index: 2;
@@ -1165,7 +1194,7 @@ input {
 
 .nuvola-sx {
   position: absolute;
-  bottom: 25%;
+  top: -15%;
   left: 0;
   width: 35vw;
   z-index: 2;
@@ -1175,18 +1204,11 @@ input {
   height: auto;
 }
 
-.collina {
-  position: absolute;
-  bottom: -50px;
+.spacing {
+  background: #115A6E;
+  height: 10vw;
+  min-height: 300px;
   width: 100%;
-  z-index: 3;
-}
-.collina img, .collina svg {
-  width: 100%;
-  height: auto;
-  min-width: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
 }
 @-webkit-keyframes spin {
   100% {
@@ -1199,6 +1221,138 @@ input {
     transform: rotate(360deg);
   }
 }
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+:root {
+  --select-border: #777;
+  --select-focus: blue;
+  --select-arrow: var(--select-border);
+}
+
+select {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background-color: transparent;
+  border: none;
+  padding: 0 1em 0 0;
+  margin: 0;
+  width: 100%;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: inherit;
+  line-height: inherit;
+  z-index: 1;
+  outline: none;
+}
+select::-ms-expand {
+  display: none;
+}
+
+.select {
+  display: grid;
+  grid-template-areas: "select";
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+  min-width: 15ch;
+  max-width: 30ch;
+  border: 1px solid var(--select-border);
+  border-radius: 0.25em;
+  padding: 0.25em 0.5em;
+  font-size: 1.25rem;
+  cursor: pointer;
+  line-height: 1.1;
+  background-color: #fff;
+  background-image: -webkit-gradient(linear, left bottom, left top, from(#f9f9f9), color-stop(33%, #fff));
+  background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
+}
+.select select, .select::after {
+  grid-area: select;
+}
+.select:not(.select--multiple)::after {
+  content: "";
+  justify-self: end;
+  width: 0.8em;
+  height: 0.5em;
+  background-color: var(--select-arrow);
+  -webkit-clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+          clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+}
+
+select:focus + .focus {
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  right: -1px;
+  bottom: -1px;
+  border: 2px solid var(--select-focus);
+  border-radius: inherit;
+}
+
+select[multiple] {
+  padding-right: 0;
+  /*
+   * Safari will not reveal an option
+   * unless the select height has room to
+   * show all of it
+   * Firefox and Chrome allow showing
+   * a partial option
+   */
+  height: 6rem;
+  /*
+   * Experimental - styling of selected options
+   * in the multiselect
+   * Not supported crossbrowser
+   */
+}
+select[multiple] option {
+  white-space: normal;
+  outline-color: var(--select-focus);
+}
+
+.select--disabled {
+  cursor: not-allowed;
+  background-color: #eee;
+  background-image: -webkit-gradient(linear, left bottom, left top, from(#ddd), color-stop(33%, #eee));
+  background-image: linear-gradient(to top, #ddd, #eee 33%);
+}
+
+label {
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+
+.select + label {
+  margin-top: 2rem;
+}
+
+#year-selector {
+  margin: 10px 0;
+  cursor: pointer;
+  padding: 10px 15px;
+  background: #003745;
+  color: white;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  font-family: "IBM Plex Mono";
+  font-size: 16px;
+  max-width: 120px;
+}
+
+#category-selector {
+  position: fixed;
+  top: 300px;
+  right: 20%;
+}
+
 #map {
   top: 0;
   height: 100vh;
@@ -1356,11 +1510,6 @@ input {
       touch-action: unset;
 }
 
-#seventh-chapter {
-  opacity: 0;
-  visibility: hidden;
-}
-
 .popup {
   color: #003745;
 }
@@ -1413,26 +1562,6 @@ input {
 }
 .mapboxgl-popup-close-button:hover {
   background: #F7F7F7;
-}
-
-#year-selector {
-  position: fixed;
-  top: 150px;
-  right: 5vw;
-  padding: 10px 15px;
-  background: #003745;
-  color: white;
-  border-radius: 10px;
-  border: none;
-  outline: none;
-  font-family: "IBM Plex Mono";
-  font-size: 16px;
-}
-
-#category-selector {
-  position: fixed;
-  top: 300px;
-  right: 20%;
 }
 
 .simulatore {

@@ -1,3 +1,4 @@
+
 #map {
   top: 0;
   height: 100vh;
@@ -146,10 +147,6 @@
   touch-action: unset;
 }
 
-#seventh-chapter{
-  opacity: 0;
-  visibility: hidden;
-}
 
 .popup{
   color:$dgreen;
@@ -191,24 +188,4 @@
   &:hover{
     background: $white;
   }
-}
-
-
-#year-selector{
-  position: fixed;
-  top:150px;
-  right:5vw;
-  padding: 10px 15px;
-  background: $dgreen;
-  color:white;
-  border-radius: 10px;
-  border:none;
-  outline: none;
-  font-family: "IBM Plex Mono";
-  font-size: 16px;
-}
-#category-selector{
-  position: fixed;
-  top:300px;
-  right:20%;
 }

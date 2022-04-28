@@ -131,7 +131,7 @@ export let config = {
             hidden: false,
             title: '',
             image: '',
-            description: '',
+            description: "Selezione l'<strong>anno</strong> e la <strong>categoria</strong> di dati da visualizzare: <select id='year-selector'><option>ANNO</option></select> ",
             header_title: 'ESPLORA LA MAPPA',
             location: {
               center: [10.989990, 42.616398],

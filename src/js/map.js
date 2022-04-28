@@ -324,6 +324,13 @@ for(var i = 0; i < options.length; i++) {
 }
 
 
+select.addEventListener("change", function(e){
+  let value =  parseInt(this.value, 10);
+  map.setFilter('classifica-custom', ['==', ['number', ['get', 'YEAR']], value]);
+  map.setFilter('posizione-text', ['==', ['number', ['get', 'YEAR']], value]);
+});
+
+
 // var selectCategory = document.getElementById("category-selector");
 // var optionsCategory = ["Ondate di Calore", "Temperatura", "Indice totale", "Pioggia", "Umidità", "Sole"];
 //
@@ -335,11 +342,8 @@ for(var i = 0; i < options.length; i++) {
 //     selectCategory.appendChild(el);
 // }
 
-select.addEventListener("change", function(e){
-  let value =  parseInt(this.value, 10);
-  map.setFilter('classifica-custom', ['==', ['number', ['get', 'YEAR']], value]);
-  map.setFilter('posizione-text', ['==', ['number', ['get', 'YEAR']], value]);
-});
+
+
 
 // selectCategory.addEventListener("change", function(e){
 //   let value =  this.value.toLowerCase();

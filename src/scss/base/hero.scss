@@ -79,11 +79,7 @@
 }
 
 
-.spacing{
-  background: $green;
-  height: 10vh;
-  width:100%;
-}
+
 
 .background{
   background: $blu;
@@ -107,9 +103,32 @@
      animation:spin 30s linear infinite;
   }
 }
+
+.collina-container{
+	position: relative;
+	display: flex;
+	flex-direction: column;
+}
+.collina{
+  position: absolute;
+  bottom:0px;
+	height: 60vh;
+  width:100%;
+  z-index: 3;
+	display: flex;
+	flex-direction: column;
+  img, svg{
+    width:100%;
+    height: auto;
+    min-width: 100%;
+    object-fit: cover;
+		margin-bottom: -5px;
+		z-index: 3;
+  }
+}
 .nuvola-dx{
   position: absolute;
-  bottom:25%;
+	top:-15%;
   right: 0;
   width:35vw;
   z-index: 2;
@@ -120,7 +139,7 @@
 }
 .nuvola-sx{
   position: absolute;
-  bottom:25%;
+	top:-15%;
   left: 0;
   width:35vw;
   z-index: 2;
@@ -129,17 +148,12 @@
     height: auto;
   }
 }
-.collina{
-  position: absolute;
-  bottom:-50px;
+
+.spacing{
+  background: $green;
+  height: 10vw;
+	min-height:300px;
   width:100%;
-  z-index: 3;
-  img, svg{
-    width:100%;
-    height: auto;
-    min-width: 100%;
-    object-fit: cover;
-  }
 }
 
 @-moz-keyframes spin {
