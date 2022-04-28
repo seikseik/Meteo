@@ -1449,6 +1449,7 @@ label {
   height: 100vh;
   width: 100vw;
   position: sticky;
+  z-index: 1;
 }
 
 #mapInset {
@@ -1468,6 +1469,12 @@ label {
 #header {
   position: relative;
   z-index: 5;
+}
+
+#story {
+  z-index: 2;
+  position: sticky;
+  pointer-events: none;
 }
 
 .heading_map {
@@ -1542,6 +1549,7 @@ label {
   border-radius: 10px;
   -webkit-box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
+  pointer-events: all;
 }
 .light h3 {
   margin-bottom: 10px;
@@ -1556,19 +1564,10 @@ label {
   font-weight: 600;
 }
 
-.dark {
-  color: #fafafa;
-  background-color: #444;
-}
-
 .step {
   padding-bottom: 50vh;
   opacity: 0.25;
   pointer-events: none;
-}
-
-#seventh-chapter {
-  pointer-events: all;
 }
 
 .step.active {
