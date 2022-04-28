@@ -8,8 +8,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
     <script src="https://unpkg.com/intersection-observer@0.12.0/intersection-observer.js"></script>
-    <script src="https://unpkg.com/scrollama"></script>
+    
 
   <link rel="icon" href="favicon.ico"><script defer src="js/app.js"></script><link href="css/app.css" rel="stylesheet"></head>
   <body>
@@ -58,18 +59,24 @@
               <img src="./images/content/nuvola-dx.svg" alt="">
             </div>
 
-            <svg data-depth='0.40' class="parallax" width="1730" height="483" viewBox="0 0 1730 483" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M883.117 0.388672C524.95 0.388672 145.386 136.249 0.375 204.18V482.94H1729.96V210.515C1596.92 140.473 1241.28 0.388672 883.117 0.388672Z" fill="#115A6E"/>
+            <!-- <div data-depth='-0.30' class="parallax">
+              <img src="./images/content/collina.svg" alt="">
+            </div> -->
+
+              <svg data-depth='0.40' class="parallax" width="1730" height="483" viewBox="0 0 1730 483" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M883.117 0.388672C524.95 0.388672 145.386 136.249 0.375 204.18V482.94H1729.96V210.515C1596.92 140.473 1241.28 0.388672 883.117 0.388672Z" fill="#115A6E"/>
             </svg>
-            <div class="spacing"></div>
+            <!-- <div class="spacing"></div> -->
 
             <div data-depth='0.35' class="hero_title_container parallax">
-              <h1>Lorem ipsum dolor sit amet.</h1>
-              <h3>Sottotitolo Sottotitolo</h3>
-              <div class="scroll-down">
-                <span>SCROLL</span>
-                <img src="./images/content/scroll-icon.svg" alt="">
+              <div class="hero_title_wrapper">
+                <h1>Lorem ipsum dolor sit amet.</h1>
+                <h3>Sottotitolo Sottotitolo</h3>
               </div>
+            </div>
+
+            <div class="scroll-down">
+              <img src="./images/content/scroll-icon.svg" alt="">
             </div>
 
           </div>
