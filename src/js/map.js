@@ -255,8 +255,7 @@ let a = map.getSource("classifica")
     // });
 
 
-    scroller
-    .setup({
+    scroller.setup({
         step: '.step',
         offset: 0.5,
         progress: true

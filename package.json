@@ -93,7 +93,10 @@
   },
   "target": "web",
   "dependencies": {
+    "@babel/polyfill": "^7.12.1",
     "@babel/runtime": "^7.17.9",
-    "gsap": "npm:@gsap/member@^3.10.3"
+    "core-js": "^3.22.3",
+    "gsap": "npm:@gsap/member@^3.10.3",
+    "regenerator-runtime": "^0.13.9"
   }
 }
