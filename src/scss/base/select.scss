@@ -150,7 +150,16 @@ label {
   max-width: 120px;
 }
 #category-selector{
-  position: fixed;
-  top:300px;
-  right:20%;
+  margin: 10px 0;
+  cursor: pointer;
+  padding: 10px 15px;
+  margin-left: 10px;
+  background: $dgreen;
+  color:white;
+  border-radius: 10px;
+  border:none;
+  outline: none;
+  font-family: "IBM Plex Mono";
+  font-size: 16px;
+  max-width: 120px;
 }

@@ -39,14 +39,14 @@
 .hero_title_container{
   position: absolute;
   z-index: 4;
-  bottom: 8vh;
+  top: 8vh;
   width:100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   h1{
     @include serif_b;
-    width:40vw;
+    width:50vw;
     font-size: $title;
     line-height: 1.2;
     text-align: center;
@@ -71,6 +71,20 @@
   }
   img{
     cursor: pointer;
+		width:50px !important;
+		height: auto !important;
+		min-width: unset!important;
+		object-fit: none;
+		 animation: dribble 0.9s 0s infinite alternate ease-in-out forwards;
+  }
+}
+
+@keyframes dribble{
+  0%{
+    transform: translateY(0);
+  }
+  100%{
+    transform: translateY(25px);
   }
 }
 

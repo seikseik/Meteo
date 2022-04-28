@@ -1,6 +1,6 @@
 export let config = {
-    style: 'mapbox://styles/matteosacchi/cl1aoej5q004314pkuhnw6gxm',
-    accessToken: 'pk.eyJ1IjoibWF0dGVvc2FjY2hpIiwiYSI6ImNrazFrdG5hNzBzM2oycW1manJvbDl6ZGoifQ.FOB7LTrZU3E4nF270xUyxA',
+    style: 'mapbox://styles/lucagorini/cl2iyqrtw001814rjhh32bsvg',
+    accessToken: 'pk.eyJ1IjoibHVjYWdvcmluaSIsImEiOiJja28yd2tzdjQxM3NqMnFwZ3BremZ2Y3hrIn0.TOK_D8r2LULbVb-3ULVf8Q',
     showMarkers: false,
     markerColor: '#3FB1CE',
     inset: false,
@@ -25,17 +25,28 @@ export let config = {
             rotateAnimation: false,
             callback: '',
             onChapterEnter: [
-                // {
-                //     layer: 'layer-name',
-                //     opacity: 1,
-                //     duration: 5000
-                // }
+                {
+                    layer: 'paragrafo-1',
+                    opacity: 1,
+                    duration: 300
+                },
+                {
+                    layer: 'paragrafo-1-icon',
+                    opacity: 1,
+                    duration: 300
+                }
             ],
             onChapterExit: [
-                // {
-                //     layer: 'layer-name',
-                //     opacity: 0
-                // }
+              {
+                  layer: 'paragrafo-1',
+                  opacity: 0,
+                  duration: 300
+              },
+              {
+                  layer: 'paragrafo-1-icon',
+                  opacity: 0,
+                  duration: 300
+              }
             ]
         },
         {
@@ -47,8 +58,8 @@ export let config = {
             description: 'Degli ultimi 15 posti, undici sono occupati da città situate nella Pianura Padana. Maglia nera a <strong>Cremona</strong>, che ha sommato solo 366 punti nell’indice di vivibilità climatica, penultimo posto per <strong>Salerno</strong> (387), preceduta da <strong>Parma</strong> (393), Reggio Emilia<strong></strong> e <strong>Oristano</strong> (entrambe con 395). <strong>Milano</strong>, con il suo clima continentale si trova all’89mo posto. Peggio hanno fatto altre città di pianura come <strong>Lodi, Modena, Mantova, Piacenza, Pavia, Novara, Ferrara e Padova,</strong> a conferma che la parte centrale della grande pianura del Nord, soprattutto lungo il corso del Po tra Emilia e Lombardia, a causa delle particolari condizioni geografiche che influenzano anche il clima (scarsa circolazione dell’aria, temperature rigide d’inverno e calde d’estate con altissima umidità relativa, frequenti gelate e giornate nebbiose) non sono certo le migliori d’Italia sotto l’aspetto bioclimatico.',
             header_title: 'Le città meno favorite dal clima',
             location: {
-              center: [12.979990, 40.416398],
-              zoom: 7.6,
+              center: [10.989990, 42.616398],
+              zoom: 5.6,
               pitch: 0,
               bearing: 0
                 // flyTo additional controls-
@@ -61,8 +72,28 @@ export let config = {
             mapAnimation: 'flyTo',
             rotateAnimation: false,
             callback: '',
-            onChapterEnter: [],
-            onChapterExit: []
+            onChapterEnter: [  {
+                  layer: 'paragrafo-2',
+                  opacity: 1,
+                  duration: 300
+              },
+              {
+                  layer: 'paragrafo-2-icon',
+                  opacity: 1,
+                  duration: 300
+              }],
+            onChapterExit: [
+              {
+                  layer: 'paragrafo-2',
+                  opacity: 0,
+                  duration: 300
+              },
+              {
+                  layer: 'paragrafo-2-icon',
+                  opacity: 0,
+                  duration: 300
+              }
+            ]
         },
         {
             id: 'third-identifier',
@@ -73,7 +104,7 @@ export let config = {
             description: 'In una nazione che si estende per quasi 1.300 chilometri in linea d’aria tra il punto più a Nord  e quello più a Sud, la variabilità climatica è molto elevata. Alla quale si aggiunge la catena montuosa più alta d’Europa e una dorsale appenninica lungo tutta la penisola, bagnata su tre lati dal mare. Una situazione complessa sotto il profilo meteorologico, forse la più variegata del continente, che da aree con clima glaciale passa a quelle con clima pre-desertico. Andando a guardare in profondità nei vari indici, si scoprono dati inaspettati. Per esempio, <strong>Roma</strong> è in ultima posizione per quanto riguarda l’escursione termica media giornaliera annua con oltre 12 gradi, mentre la città dove le temperature sono più costanti è <strong>Ancona</strong>. <strong>Lecce</strong> è invece la località dove d’estate è più difficile dormire a causa delle «notti tropicali», che sono quelle caratterizzate da elevate temperature notturne e alto tasso di umidità',
             header_title: 'Escursione termica',
             location: {
-              center: [9.889990, 45.516398],
+              center: [10.989990, 42.616398],
               zoom: 5.6,
               pitch: 0,
               bearing: 0
@@ -81,8 +112,28 @@ export let config = {
             mapAnimation: 'flyTo',
             rotateAnimation: false,
             callback: '',
-            onChapterEnter: [],
-            onChapterExit: []
+            onChapterEnter: [  {
+                  layer: 'paragrafo-3',
+                  opacity: 1,
+                  duration: 300
+              },
+              {
+                  layer: 'paragrafo-3-icon',
+                  opacity: 1,
+                  duration: 300
+              }],
+            onChapterExit: [
+              {
+                  layer: 'paragrafo-3',
+                  opacity: 0,
+                  duration: 300
+              },
+              {
+                  layer: 'paragrafo-3-icon',
+                  opacity: 0,
+                  duration: 300
+              }
+            ]
         },
         {
             id: 'fourth-chapter',
@@ -101,8 +152,28 @@ export let config = {
             mapAnimation: 'flyTo',
             rotateAnimation: false,
             callback: '',
-            onChapterEnter: [],
-            onChapterExit: []
+            onChapterEnter: [  {
+                  layer: 'paragrafo-4',
+                  opacity: 1,
+                  duration: 300
+              },
+              {
+                  layer: 'paragrafo-4-icon',
+                  opacity: 1,
+                  duration: 300
+              }],
+            onChapterExit: [
+              {
+                  layer: 'paragrafo-4',
+                  opacity: 0,
+                  duration: 300
+              },
+              {
+                  layer: 'paragrafo-4-icon',
+                  opacity: 0,
+                  duration: 300
+              }
+            ]
         },
 
         {
@@ -122,8 +193,28 @@ export let config = {
             mapAnimation: 'flyTo',
             rotateAnimation: false,
             callback: '',
-            onChapterEnter: [],
-            onChapterExit: []
+            onChapterEnter: [  {
+                  layer: 'paragrafo-5',
+                  opacity: 1,
+                  duration: 300
+              },
+              {
+                  layer: 'paragrafo-5-icon',
+                  opacity: 1,
+                  duration: 300
+              }],
+            onChapterExit: [
+              {
+                  layer: 'paragrafo-5',
+                  opacity: 0,
+                  duration: 300
+              },
+              {
+                  layer: 'paragrafo-5-icon',
+                  opacity: 0,
+                  duration: 300
+              }
+            ]
         },
         {
             id: 'seventh-chapter',
@@ -131,7 +222,7 @@ export let config = {
             hidden: false,
             title: '',
             image: '',
-            description: "Selezione l'<strong>anno</strong> e la <strong>categoria</strong> di dati da visualizzare: <select id='year-selector'><option>ANNO</option></select> ",
+            description: "Selezione l'<strong>anno</strong> e la <strong>categoria</strong> di dati da visualizzare: <select id='year-selector'><option>ANNO</option></select><select id='category-selector'><option>CATEGORIA</option></select>",
             header_title: 'ESPLORA LA MAPPA',
             location: {
               center: [10.989990, 42.616398],
