@@ -209,59 +209,54 @@ map.on("load", function() {
         'filter': ['all', filterYear, filterCategory]
     });
 
-  map.addLayer({
-    id: 'posizione-text',
-    type: 'symbol',
-    source: 'classifica',
-    filter: ['has', category],
-    paint: {
-      "text-color": "rgba(255,255,255,255)",
-      'text-opacity': 0
+    map.addLayer({
+      id: 'posizione-text',
+      type: 'symbol',
+      source: 'classifica',
+      filter: ['has', category],
+      paint: {
+        "text-color": "rgba(255,255,255,255)",
+        'text-opacity': 0
+      },
+      layout: {
+      'text-field': `{${category}}`,
+      'text-font': ['Arial Unicode MS Bold'],
+      'text-size': 11,
+      'text-allow-overlap': true,
+       'text-ignore-placement': true,
+       'icon-allow-overlap': true,
+       'icon-ignore-placement': true,
     },
-    layout: {
-    'text-field': `{${category}}`,
-    'text-font': ['Arial Unicode MS Bold'],
-    'text-size': 11,
-    'text-allow-overlap': true,
-     'text-ignore-placement': true,
-     'icon-allow-overlap': true,
-     'icon-ignore-placement': true,
-  },
-  'filter': ['all', filterYear, filterCategory]
-  });
+    'filter': ['all', filterYear, filterCategory]
+    });
 
 
-    // map.on("sourcedata", function(e) {
-    //   console.log(e)
-        // if (map.getSource('classifica') && map.isSourceLoaded('classifica')) {
-              map.on('click', function(e) {
-                console.log(e.properties)
+    map.on('click', function(e) {
+      console.log(e.properties)
 
-                var features = map.queryRenderedFeatures([e.point.x, e.point.y + 50], {
-                    layers: ["classifica-custom"]
-                });
+      var features = map.queryRenderedFeatures([e.point.x, e.point.y + 50], {
+          layers: ["classifica-custom"]
+      });
 
-                if(features != null){
+      if(features != null){
 
-                    var feature = features[0];
-                    var popup = new mapboxgl.Popup({ offset: [0, -15] })
-                      .setLngLat(feature.geometry.coordinates)
-                      .setHTML('<div id=\'popup\' class=\'popup\' style=\'z-index: 10;\'>' +
-                                '<ul>' +
-                                '<li> <h4>' + feature.properties['CITY'] + '</h4> </li>' +
-                                '<li> Ondate di calore: ' + feature.properties['POS_NOTTI_TROPICALI'] + ' </li>' +
-                                '<li> Soleggiamento: ' + feature.properties['POS_SOLEGGIAMENTO'] + ' </li>' +
-                                '<li> Comfort per umidità: ' + feature.properties['POS_COMFORT_PER_UMIDITA'] + ' </li>' +
-                                '<li> Giorni freddi: ' + feature.properties['POS_GIORNI_FREDDI'] + ' </li>' +
-                                '<li> Piogge: ' + feature.properties['POS_PIOGGE'] + ' </li>' +
-                                '</ul></div>')
-                      .setLngLat(feature.geometry.coordinates)
-                      .addTo(map);
-                  }
-              });
+          var feature = features[0];
+          var popup = new mapboxgl.Popup({ offset: [0, -15] })
+            .setLngLat(feature.geometry.coordinates)
+            .setHTML('<div id=\'popup\' class=\'popup\' style=\'z-index: 10;\'>' +
+                      '<ul>' +
+                      '<li> <h4>' + feature.properties['CITY'] + '</h4> </li>' +
+                      '<li> Ondate di calore: ' + feature.properties['POS_NOTTI_TROPICALI'] + ' </li>' +
+                      '<li> Soleggiamento: ' + feature.properties['POS_SOLEGGIAMENTO'] + ' </li>' +
+                      '<li> Comfort per umidità: ' + feature.properties['POS_COMFORT_PER_UMIDITA'] + ' </li>' +
+                      '<li> Giorni freddi: ' + feature.properties['POS_GIORNI_FREDDI'] + ' </li>' +
+                      '<li> Piogge: ' + feature.properties['POS_PIOGGE'] + ' </li>' +
+                      '</ul></div>')
+            .setLngLat(feature.geometry.coordinates)
+            .addTo(map);
+        }
+    });
 
-        // }
-    // });
 
     scroller.setup({
         step: '.step',
@@ -400,5 +395,4 @@ selectCategory.addEventListener("change", function(e){
   if(value == "giorni freddi"){
       map.setFilter('posizione-text', ['==', ['number', ['get', 'YEAR']], value]);
   }
-
 });
